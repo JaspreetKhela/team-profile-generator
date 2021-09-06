@@ -7,8 +7,8 @@ var managerAnswersObject = {};
 // Creating an obeject for storing information about a manager's interns
 var interns = {};
 
-// Creating an object for storing information about a manager's employees
-var employees = {};
+// Creating an object for storing information about a manager's engineers
+var engineers = {};
 
 // Prompts functions to collect the project's information
 function promptManager() {
@@ -101,15 +101,15 @@ Direct Report's Information
             }
         },
 
-        // Add an intern or employee prompt
+        // Add an intern or engineer prompt
         {
             type: "list",
             name: "addSubordinate",
-            message: "Would you like to add an intern or an employee? (Required)",
-            choices: ["Intern", "Employee"]
+            message: "Would you like to add an intern or an engineer? (Required)",
+            choices: ["Intern", "Engineer"]
         },
 
-        // Intern or employee's name prompt
+        // Intern or engineer's name prompt
         {
             type: "input",
             name: "subordinateName",
@@ -128,7 +128,7 @@ Direct Report's Information
             }
         },
 
-        // Intern or employee's ID prompt
+        // Intern or engineer's ID prompt
         {
             type: "input",
             name: "subordinateID",
@@ -147,7 +147,7 @@ Direct Report's Information
             }
         },
 
-        // Intern or employee's email prompt
+        // Intern or engineer's email prompt
         {
             type: "input",
             name: "subordinateEmail",
@@ -186,7 +186,7 @@ Direct Report's Information
             when: (answers) => answers.addSubordinate === "Intern"
         },
 
-        // Employee's GitHub username prompt
+        // Engineer's GitHub username prompt
         {
             type: "input",
             name: "subordinateGitHub",
@@ -203,14 +203,14 @@ Direct Report's Information
                     return false;
                 }
             },
-            when: (answers) => answers.addSubordinate === "Employee"
+            when: (answers) => answers.addSubordinate === "engineer"
         },
 
-        // Confirm whether or not another intern's or employee's information is to be added prompt
+        // Confirm whether or not another intern's or engineer's information is to be added prompt
         {
             type: 'confirm',
             name: 'confirmAddAnother',
-            message: "Would you like to add another intern's or employee's information?",
+            message: "Would you like to add another intern's or engineer's information?",
             default: false
         }
     ])
@@ -223,13 +223,13 @@ Direct Report's Information
             interns.subordinateID = {"internName": answers.subordinateName, "internEmail": answers.subordinateEmail, "internSchool": answers.subordinateSchool};
         }
         else {
-            employees.subordinateID = {"employeeName": answers.subordinateName, "employeeEmail": answers.subordinateEmail, "employeeGitHub": answers.subordinateGitHub};
+            engineers.subordinateID = {"engineerName": answers.subordinateName, "engineerEmail": answers.subordinateEmail, "engineerGitHub": answers.subordinateGitHub};
         }
 
         // 
         if(answers.confirmAddAnother === true) {
-            // Run the prompts to add an intern or employee
-            promptManagerEmployees();
+            // Run the prompts to add an intern or engineer
+            promptManagerEngineers();
         }
         else {console.log(`Thank you for using this application! Here is your information: 
         ${JSON.stringify(managerAnswersObject)}.
@@ -237,8 +237,8 @@ Direct Report's Information
         Here is your interns' information:
         ${JSON.stringify(interns)}.
         
-        Here is your employees' information: 
-        ${JSON.stringify(employees)}.
+        Here is your engineers' information: 
+        ${JSON.stringify(engineers)}.
         
         The HTML file for your team page is now in the dist folder in the root directory.`);}
     })
@@ -255,7 +255,7 @@ Direct Report's Information
 }
 
 // Prompts functions to collect the project's information
-function promptManagerEmployees() {
+function promptManagerEngineers() {
     console.log(`
 =========================
 Add Another Direct Report
@@ -264,15 +264,15 @@ Add Another Direct Report
 
     return inquirer
     .prompt([
-        // Add an intern or employee prompt
+        // Add an intern or engineer prompt
         {
             type: "list",
             name: "addSubordinate",
-            message: "Would you like to add an intern or an employee? (Required)",
-            choices: ["Intern", "Employee"]
+            message: "Would you like to add an intern or an engineer? (Required)",
+            choices: ["Intern", "Engineer"]
         },
 
-        // Intern or employee's name prompt
+        // Intern or engineer's name prompt
         {
             type: "input",
             name: "subordinateName",
@@ -291,7 +291,7 @@ Add Another Direct Report
             }
         },
 
-        // Intern or employee's ID prompt
+        // Intern or engineer's ID prompt
         {
             type: "input",
             name: "subordinateID",
@@ -310,7 +310,7 @@ Add Another Direct Report
             }
         },
 
-        // Intern or employee's email prompt
+        // Intern or engineer's email prompt
         {
             type: "input",
             name: "subordinateEmail",
@@ -349,7 +349,7 @@ Add Another Direct Report
             when: (answers) => answers.addSubordinate === "Intern"
         },
 
-        // Employee's GitHub username prompt
+        // Engineer's GitHub username prompt
         {
             type: "input",
             name: "subordinateGitHub",
@@ -366,14 +366,14 @@ Add Another Direct Report
                     return false;
                 }
             },
-            when: (answers) => answers.addSubordinate === "Employee"
+            when: (answers) => answers.addSubordinate === "Engineer"
         },
 
-        // Confirm whether or not another intern's or employee's information is to be added prompt
+        // Confirm whether or not another intern's or engineer's information is to be added prompt
         {
             type: 'confirm',
             name: 'confirmAddAnother',
-            message: "Would you like to add another intern's or employee's information?",
+            message: "Would you like to add another intern's or engineer's information?",
             default: false
           }
     ])
@@ -383,15 +383,15 @@ Add Another Direct Report
             interns.subordinateID = {"internName": answers.subordinateName, "internEmail": answers.subordinateEmail, "internSchool": answers.subordinateSchool};
         }
         else {
-            employees.subordinateID = {"employeeName": answers.subordinateName, "employeeEmail": answers.subordinateEmail, "employeeGitHub": answers.subordinateGitHub};
+            engineers.subordinateID = {"engineerName": answers.subordinateName, "engineerEmail": answers.subordinateEmail, "engineerGitHub": answers.subordinateGitHub};
         }
 
         if(answers.confirmAddAnother === true) {
-            // Run the prompts to add an intern or employee
+            // Run the prompts to add an intern or engineer
             promptManagerEmployees();
         }
 
-        // console.log(managerAnswersObject, interns, employees);
+        // console.log(managerAnswersObject, interns, engineers);
 
         console.log(`Thank you for using this application! Here is your information: 
         ${JSON.stringify(managerAnswersObject)}.
@@ -399,8 +399,8 @@ Add Another Direct Report
         Here is your interns' information:
         ${JSON.stringify(interns)}.
         
-        Here is your employees' information: 
-        ${JSON.stringify(employees)}.
+        Here is your engineers' information: 
+        ${JSON.stringify(engineers)}.
         
         The HTML file for your team page is now in the dist folder in the root directory.`);
     })
