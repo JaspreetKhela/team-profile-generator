@@ -3,8 +3,8 @@ const Employee = require("../lib/Employee.js");
 
 // Test employeeObjects
 const employeeObject1 = {"managerName": "Test Name", "managerID": "Test ID", "managerEmail": "test@email.com", "managerOffice": "Test Office", "addSubordinate": "Intern", "subordinateName": "Test Intern Name", "subordinateID": "Test Intern ID", "subordinateEmail": "Test Intern Email", "subordinateSchool": "Test Intern School", "confirmAddAnother": true};
-const employeeObject2 = {"subordinateID": {"internName": "Test Intern Name", "internEmail": "test@email.com", "internSchool": "Test Intern School"}};
-const employeeObject3 = {"subordinateID": {"engineerName": "Test Engineer Name", "engineerEmail": "test@email.com", "engineerGitHub": "Test Engineer GitHub"}};
+const employeeObject2 = {"internName": "Test Intern Name", "internID": "Test ID", "internEmail": "test@email.com", "internSchool": "Test Intern School"};
+const employeeObject3 = {"engineerName": "Test Engineer Name", "engineerID": "Test ID", "engineerEmail": "test@email.com", "engineerGitHub": "Test Engineer GitHub"};
 
 // Creating instances of an Employee
 const employee1 = new Employee(employeeObject1);

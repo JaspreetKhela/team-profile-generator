@@ -2,12 +2,10 @@
 const Intern = require("../lib/Intern.js");
 
 // Test employeeObject
-const employeeObject2 = {"subordinateID": {"internName": "Test Intern Name", "internEmail": "Test Intern Email", "internSchool": "Test Intern School"}};
+const employeeObject2 = {"internName": "Test Intern Name", "internID": "Test ID", "internEmail": "test@email.com", "internSchool": "Test Intern School"};
 
 // Creating instances of an Employee
 const employee2 = new Intern(employeeObject2);
-
-console.log(employee2);
 
 test("Creates an intern object", () => {
     expect(employee2.school).toEqual(expect.any(String));

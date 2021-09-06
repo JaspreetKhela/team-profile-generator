@@ -2,7 +2,7 @@
 const Engineer = require("../lib/Engineer.js");
 
 // Test employeeObject
-const employeeObject3 = {"subordinateID": {"engineerName": "Test Engineer Name", "engineerEmail": "Test Engineer Email", "engineerGitHub": "Test Engineer GitHub"}};
+const employeeObject3 = {"engineerName": "Test Engineer Name", "engineerID": "Test ID", "engineerEmail": "test@email.com", "engineerGitHub": "Test Engineer GitHub"};
 
 // Creating instances of an Employee
 const employee3 = new Engineer(employeeObject3);

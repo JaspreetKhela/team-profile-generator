@@ -1,14 +1,29 @@
 // Importing Inquirer npm package
 const inquirer = require("inquirer");
 
+// Importing classes
+const Manager = require("./lib/Manager.js");
+const Intern = require("./lib/Intern.js");
+const Engineer = require("./lib/Engineer.js");
+const Employee = require("./lib/Employee.js");
+
 // Creating an object for storing answers
 var managerAnswersObject = {};
 
 // Creating an obeject for storing information about a manager's interns
-var interns = {};
+var intern = {};
 
 // Creating an object for storing information about a manager's engineers
-var engineers = {};
+var engineer = {};
+
+// Creating an instance of the Manager class
+var managerClassInstance;
+
+// Creating an array to store instances of the Intern class
+var internClassInstances = [];
+
+// Creating an array to store instances of the Engineer class
+var engineerClassInstances = [];
 
 // Prompts functions to collect the project's information
 function promptManager() {
@@ -84,12 +99,6 @@ Manager's Information
             validate: input => {
                 if (input) {
                     if (typeof input === "string") {
-                        console.log(`
-
-===========================
-Direct Report's Information
-===========================
-`);
                         return true;
                     }
                     return false;
@@ -217,28 +226,43 @@ Direct Report's Information
     .then((answers) => {
         // Save manager's answers to an object
         managerAnswersObject = answers;
+
+        // Create instance of Manager class
+        managerClassInstance = new Manager(answers);
         
         // Save the first direct report's information
         if(answers.addSubordinate === "Intern") {
-            interns.subordinateID = {"internName": answers.subordinateName, "internEmail": answers.subordinateEmail, "internSchool": answers.subordinateSchool};
+            intern = {"internName": answers.subordinateName, "internID": answers.subordinateID, "internEmail": answers.subordinateEmail, "internSchool": answers.subordinateSchool};
+
+            // Create instance of Intern class and add it to an array
+            internClassInstances.push(new Intern(intern));
         }
         else {
-            engineers.subordinateID = {"engineerName": answers.subordinateName, "engineerEmail": answers.subordinateEmail, "engineerGitHub": answers.subordinateGitHub};
+            engineer = {"engineerName": answers.subordinateName, "engineerID": answers.subordinateID, "engineerEmail": answers.subordinateEmail, "engineerGitHub": answers.subordinateGitHub};
+
+            // Create instance of Engineer class
+            engineerClassInstances.push(new Engineer(engineer));
         }
 
-        // 
+        // If the user wants to add another 
         if(answers.confirmAddAnother === true) {
+            // Clear the current intern and engineer objects
+            intern = {};
+            engineer = {};
+
             // Run the prompts to add an intern or engineer
-            promptManagerEngineers();
+            promptManagerEmployees();
         }
-        else {console.log(`Thank you for using this application! Here is your information: 
-        ${JSON.stringify(managerAnswersObject)}.
+        else {console.log(`Thank you for using this application! 
+        
+        Here is your information: 
+        ${JSON.stringify(managerClassInstance)}.
         
         Here is your interns' information:
-        ${JSON.stringify(interns)}.
+        ${JSON.stringify(internClassInstances)}.
         
         Here is your engineers' information: 
-        ${JSON.stringify(engineers)}.
+        ${JSON.stringify(engineerClassInstances)}.
         
         The HTML file for your team page is now in the dist folder in the root directory.`);}
     })
@@ -255,7 +279,7 @@ Direct Report's Information
 }
 
 // Prompts functions to collect the project's information
-function promptManagerEngineers() {
+function promptManagerEmployees() {
     console.log(`
 =========================
 Add Another Direct Report
@@ -380,29 +404,41 @@ Add Another Direct Report
     .then((answers) => {
         // Save the direct report's information
         if(answers.addSubordinate === "Intern") {
-            interns.subordinateID = {"internName": answers.subordinateName, "internEmail": answers.subordinateEmail, "internSchool": answers.subordinateSchool};
+            intern = {"internName": answers.subordinateName, "internID": answers.subordinateID, "internEmail": answers.subordinateEmail, "internSchool": answers.subordinateSchool};
+
+            // Create instance of Intern class and add it to an array
+            internClassInstances.push(new Intern(intern));
         }
         else {
-            engineers.subordinateID = {"engineerName": answers.subordinateName, "engineerEmail": answers.subordinateEmail, "engineerGitHub": answers.subordinateGitHub};
+            engineer = {"engineerName": answers.subordinateName, "engineerID": answers.subordinateID, "engineerEmail": answers.subordinateEmail, "engineerGitHub": answers.subordinateGitHub};
+
+            // Create instance of Engineer class
+            engineerClassInstances.push(new Engineer(engineer));
         }
 
-        if(answers.confirmAddAnother === true) {
-            // Run the prompts to add an intern or engineer
+        // Control flow statements to decide if another employee needs to be added
+        if (answers.confirmAddAnother) {
+            // Clear the current intern and engineer objects
+            intern = {};
+            engineer = {};
+
+            // Run this function again
             promptManagerEmployees();
         }
-
-        // console.log(managerAnswersObject, interns, engineers);
-
-        console.log(`Thank you for using this application! Here is your information: 
-        ${JSON.stringify(managerAnswersObject)}.
-        
-        Here is your interns' information:
-        ${JSON.stringify(interns)}.
-        
-        Here is your engineers' information: 
-        ${JSON.stringify(engineers)}.
-        
-        The HTML file for your team page is now in the dist folder in the root directory.`);
+        else {
+            console.log(`Thank you for using this application! 
+            
+            Here is your information: 
+            ${JSON.stringify(managerClassInstance)}.
+            
+            Here is your interns' information:
+            ${JSON.stringify(internClassInstances)}.
+                
+            Here is your engineers' information: 
+            ${JSON.stringify(engineerClassInstances)}.
+            
+            The HTML file for your team page is now in the dist folder in the root directory.`);
+        }
     })
     .catch((error) => {
         if (error.isTtyError) {
