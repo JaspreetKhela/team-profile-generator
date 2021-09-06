@@ -1,0 +1,25 @@
+{
+  "name": "team-profile-generator",
+  "version": "1.0.0",
+  "description": "Command Line Interface prompts fillout the contents of an HTML file that contains information about a team.",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JaspreetKhela/team-profile-generator.git"
+  },
+  "author": "Jaspreet Khela",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JaspreetKhela/team-profile-generator/issues"
+  },
+  "homepage": "https://github.com/JaspreetKhela/team-profile-generator#readme",
+  "dependencies": {
+    "inquirer": "^8.1.2"
+  }
+}
