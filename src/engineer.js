@@ -12,7 +12,7 @@ function engineerCardHandler(engineerClassInstance) {
         <h5 class="card-subtitle mb-2 text-muted"><b>${engineerClassInstance.role}</b></h5>
         <br>
         <p class="card-text"><b>ID</b>: ${engineerClassInstance.ID}</p>
-        <p class="card-text"><b>GitHub Username</b>: ${engineerClassInstance.gitHub}</p>
+        <p class="card-text"><b>GitHub Username</b>: <a href="https://www.github.com/${engineerClassInstance.gitHub}">${engineerClassInstance.gitHub}</a></p>
         <a href="mailto:${engineerClassInstance.email}" class="card-link"><b>Email</b></a>
     </div>
 </div>

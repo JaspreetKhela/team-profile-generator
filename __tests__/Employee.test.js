@@ -68,7 +68,6 @@ test("Gets an employee's role", () => {
 // _____________________
 
 test("Creates an employee object", () => {
-    console.log(employee3);
     expect(employee3.name).toEqual(expect.any(String));
     expect(employee3.ID).toEqual(expect.any(String));
     expect(employee3.email).toEqual(expect.stringContaining("@"));
