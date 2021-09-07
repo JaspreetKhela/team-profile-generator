@@ -31,9 +31,9 @@ To use this application, navigate to the root folder in the cloned repository's 
 <img width="1440" alt="Screen Shot 2021-09-07 at 5 33 14 AM" src="https://user-images.githubusercontent.com/80941606/132322992-2d3f6443-0635-46c9-9a6a-cb81c86f2e68.png">
 <img width="1440" alt="Screen Shot 2021-09-07 at 5 33 23 AM" src="https://user-images.githubusercontent.com/80941606/132323005-1593656e-18f4-4fb8-acb4-c626a3d4566d.png">
 ![Screen Shot 2021-09-07 at 5 33 23 AM (2)](https://user-images.githubusercontent.com/80941606/132323019-bb7d7a3b-8aaa-40c2-9cf3-955cf70d3e8d.png)
-<img width="1440" alt="Screen Shot 2021-09-07 at 5 47 37 AM" src="https://user-images.githubusercontent.com/80941606/132324006-8bf9cd80-f539-4b8c-89ba-ad995ca5cb8b.png">
+<img width="1440" alt="Screen Shot 2021-09-07 at 7 36 41 AM" src="https://user-images.githubusercontent.com/80941606/132338235-c2bef550-9b57-4115-93aa-8752d23a5431.png">
 
-A sample 'Jaspreet Khela's Team.html' file from this application is contained in the 'dist' directory of this repository.
+A sample 'Jaspreet Khela's Team.html' file generated from this application is contained in the 'dist' directory of this repository.
 
 ### Features
 This application creates a HTML document after prompting a user for some personal and team information.
