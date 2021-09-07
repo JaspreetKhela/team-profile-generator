@@ -1,4 +1,4 @@
-// Importing Employee class
+// Import Employee class
 const Employee = require("../lib/Employee.js");
 
 // Test employeeObjects
@@ -6,7 +6,7 @@ const employeeObject1 = {"managerName": "Test Name", "managerID": "Test ID", "ma
 const employeeObject2 = {"internName": "Test Intern Name", "internID": "Test ID", "internEmail": "test@email.com", "internSchool": "Test Intern School"};
 const employeeObject3 = {"engineerName": "Test Engineer Name", "engineerID": "Test ID", "engineerEmail": "test@email.com", "engineerGitHub": "Test Engineer GitHub"};
 
-// Creating instances of an Employee
+// Create instances of an Employee
 const employee1 = new Employee(employeeObject1);
 const employee2 = new Employee(employeeObject2);
 const employee3 = new Employee(employeeObject3);

@@ -1,11 +1,15 @@
-// Importing Employee class
+// Import Employee class
 const Engineer = require("../lib/Engineer.js");
 
 // Test employeeObject
 const employeeObject3 = {"engineerName": "Test Engineer Name", "engineerID": "Test ID", "engineerEmail": "test@email.com", "engineerGitHub": "Test Engineer GitHub"};
 
-// Creating instances of an Employee
+// Create instances of an Employee
 const employee3 = new Engineer(employeeObject3);
+
+// _____________________
+// Engineer Object Tests
+// _____________________
 
 test("Creates an engineer's object", () => {
     expect(employee3.gitHub).toEqual(expect.any(String));

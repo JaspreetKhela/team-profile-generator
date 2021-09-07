@@ -1,0 +1,56 @@
+/* Header styling */
+header {
+    padding: 20px;
+    text-align: center;
+    background-color: darkred;
+    border-bottom: solid;
+}
+
+/* Header's title styling */
+h1 {
+    margin-top: 25px;
+    text-align: center;
+}
+
+/* Heading styling */
+h3 {
+    color: white;
+}
+
+/* Paragraph and anchor styling */
+p, a {
+    color: darkblue;
+    font-size: larger;
+}
+
+/* Body styling */
+body {
+    background-color: lightskyblue;
+    color: white;
+}
+
+/* Bootstrap row styling */
+.row {
+    padding: 20px;
+}
+
+/* Bootstrap card styling */
+.card {
+    margin: 20px;
+    background-color: lightyellow;
+    text-align: center;
+}
+
+/* Card title styling */
+.card-title {
+    font-size: xx-large;
+    color: darkblue;
+    background-color: lightskyblue;
+    padding: 10px;;
+}
+
+/* Card subtitle styling */
+.card-subtitle {
+    font-size: x-large;
+    color: darkblue;
+}

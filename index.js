@@ -1,31 +1,36 @@
-// Importing Inquirer npm package
+// Import Node.js's fs module
+const fs = require("fs");
+
+// Import Inquirer npm package
 const inquirer = require("inquirer");
 
-// Importing classes
+// Import classes
 const Manager = require("./lib/Manager.js");
 const Intern = require("./lib/Intern.js");
 const Engineer = require("./lib/Engineer.js");
-const Employee = require("./lib/Employee.js");
 
-// Creating an object for storing answers
+// Import HTML template generator modules
+const pageTemplateGenerator = require("./src/page-template.js");
+
+// Create an object for storing answers
 var managerAnswersObject = {};
 
-// Creating an obeject for storing information about a manager's interns
+// Create an obeject for storing information about a manager's interns
 var intern = {};
 
-// Creating an object for storing information about a manager's engineers
+// Create an object for storing information about a manager's engineers
 var engineer = {};
 
-// Creating an instance of the Manager class
+// Create an instance of the Manager class
 var managerClassInstance;
 
-// Creating an array to store instances of the Intern class
+// Create an array to store instances of the Intern class
 var internClassInstances = [];
 
-// Creating an array to store instances of the Engineer class
+// Create an array to store instances of the Engineer class
 var engineerClassInstances = [];
 
-// Prompts functions to collect the project's information
+// Prompts to collect the project's information
 function promptManager() {
     console.log(`
 =====================
@@ -85,7 +90,7 @@ Manager's Information
                     return false;
                 }
                 else {
-                    console.log("This is a required field. Please enter a valid employee ID.");
+                    console.log("This is a required field. Please enter a valid email.");
                     return false;
                 }
             }
@@ -104,7 +109,7 @@ Manager's Information
                     return false;
                 }
                 else {
-                    console.log("This is a required field. Please enter a valid employee ID.");
+                    console.log("This is a required field. Please enter a valid office number.");
                     return false;
                 }
             }
@@ -232,12 +237,14 @@ Manager's Information
         
         // Save the first direct report's information
         if(answers.addSubordinate === "Intern") {
+            // Create the intern object
             intern = {"internName": answers.subordinateName, "internID": answers.subordinateID, "internEmail": answers.subordinateEmail, "internSchool": answers.subordinateSchool};
 
             // Create instance of Intern class and add it to an array
             internClassInstances.push(new Intern(intern));
         }
         else {
+            // Create the engineer object
             engineer = {"engineerName": answers.subordinateName, "engineerID": answers.subordinateID, "engineerEmail": answers.subordinateEmail, "engineerGitHub": answers.subordinateGitHub};
 
             // Create instance of Engineer class
@@ -253,18 +260,25 @@ Manager's Information
             // Run the prompts to add an intern or engineer
             promptManagerEmployees();
         }
-        else {console.log(`Thank you for using this application! 
-        
-        Here is your information: 
-        ${JSON.stringify(managerClassInstance)}.
-        
-        Here is your interns' information:
-        ${JSON.stringify(internClassInstances)}.
-        
-        Here is your engineers' information: 
-        ${JSON.stringify(engineerClassInstances)}.
-        
-        The HTML file for your team page is now in the dist folder in the root directory.`);}
+        else {
+            // console.log("first", JSON.stringify(managerClassInstance), JSON.stringify(internClassInstances), JSON.stringify(engineerClassInstances));
+            
+            // Write the HTML document to the dist directory
+            fs.writeFile(`./dist/${managerClassInstance.name}'s Team.html`, pageTemplateGenerator.generatePage(managerClassInstance, internClassInstances, engineerClassInstances), function (err) {if (err) return console.log(err);});
+            
+            console.log(
+`Thank you for using this application! 
+
+Here is your information: 
+${JSON.stringify(managerClassInstance)}.
+
+Here is your interns' information:
+${JSON.stringify(internClassInstances)}.
+
+Here is your engineers' information: 
+${JSON.stringify(engineerClassInstances)}.
+
+The HTML file for your team page is now in the dist folder in the root directory.`);}
     })
     .catch((error) => {
         if (error.isTtyError) {
@@ -278,7 +292,7 @@ Manager's Information
     });
 }
 
-// Prompts functions to collect the project's information
+// Prompts to collect the project's information
 function promptManagerEmployees() {
     console.log(`
 =========================
@@ -404,12 +418,14 @@ Add Another Direct Report
     .then((answers) => {
         // Save the direct report's information
         if(answers.addSubordinate === "Intern") {
+            // Create the intern object
             intern = {"internName": answers.subordinateName, "internID": answers.subordinateID, "internEmail": answers.subordinateEmail, "internSchool": answers.subordinateSchool};
 
             // Create instance of Intern class and add it to an array
             internClassInstances.push(new Intern(intern));
         }
         else {
+            // Create the engineer object
             engineer = {"engineerName": answers.subordinateName, "engineerID": answers.subordinateID, "engineerEmail": answers.subordinateEmail, "engineerGitHub": answers.subordinateGitHub};
 
             // Create instance of Engineer class
@@ -426,18 +442,24 @@ Add Another Direct Report
             promptManagerEmployees();
         }
         else {
-            console.log(`Thank you for using this application! 
+            // console.log("second",pageTemplateGenerator);
             
-            Here is your information: 
-            ${JSON.stringify(managerClassInstance)}.
+            // Write the HTML document to the dist directory
+            fs.writeFile(`./dist/${managerClassInstance.name}'s Team.html`, pageTemplateGenerator.generatePage(managerClassInstance, internClassInstances, engineerClassInstances), function (err) {if (err) return console.log(err);});
             
-            Here is your interns' information:
-            ${JSON.stringify(internClassInstances)}.
-                
-            Here is your engineers' information: 
-            ${JSON.stringify(engineerClassInstances)}.
-            
-            The HTML file for your team page is now in the dist folder in the root directory.`);
+            console.log(
+`Thank you for using this application! 
+
+Here is your information: 
+${JSON.stringify(managerClassInstance)}.
+
+Here is your interns' information:
+${JSON.stringify(internClassInstances)}.
+    
+Here is your engineers' information: 
+${JSON.stringify(engineerClassInstances)}.
+
+The HTML file for your team page is now in the dist folder in the root directory.`);
         }
     })
     .catch((error) => {
