@@ -47,7 +47,7 @@ This application can be directly tested in the Command Line Interface using the 
 This project was created and is maintained by Jaspreet Khela.
 
 ### Contributions
-This project is currently not open for contribution.
+This project is currently not open for contributions.
 
 ### Questions
 Please [email](jaspreet.khela@gmail.com) me if you have any questions.
