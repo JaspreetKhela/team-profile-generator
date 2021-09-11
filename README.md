@@ -22,7 +22,7 @@
 
 ### Installation
 1. Download [git](https://git-scm.com/downloads), [Node.js](https://nodejs.org/en/download/) and [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm).
-2. Clone this repository by typing `git clone https://github.com/JaspreetKhela/professional-README-generator.git` in your desired directory using the Command Line Interface.
+2. Clone this repository by typing `git clone https://github.com/JaspreetKhela/team-profile-generator.git` in your desired directory using the Command Line Interface.
 3. Download npm dependencies by typing `npm install` in your Command Line Interface. This application using the inquirer and jest npm packages.
 
 ### Usage
